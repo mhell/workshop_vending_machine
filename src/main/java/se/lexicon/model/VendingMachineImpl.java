@@ -33,7 +33,7 @@ public class VendingMachineImpl implements VendingMachine {
         // the product was not found
         if(foundPos == -1) throw new RuntimeException("Product was not found");
 
-        // the product was found®®
+        // the product was found
         Product foundProduct = products[foundPos];
         // check balance
         if (getBalance() > foundProduct.getPrice()) {
