@@ -1,14 +1,8 @@
 package se.lexicon.model;
 
-public class Soda implements Product {
-    private final int id;
-    private double price;
-    private String productName;
-
+public final class Soda extends Product {
     public Soda(double price, String productName) {
-        this.id = Product.nextId();
-        this.price = price;
-        this.productName = productName;
+        super(price, productName);
     }
 
     @Override
@@ -23,30 +17,5 @@ public class Soda implements Product {
     @Override
     public String use() {
         return getProductName() + " is drunk.";
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    @Override
-    public String getProductName() {
-        return productName;
-    }
-
-    @Override
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 }
