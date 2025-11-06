@@ -20,10 +20,21 @@ public class App
         VendingMachineImpl vendingMachine = new VendingMachineImpl(products);
 
         // print all products
+        System.out.println("All products:");
         System.out.println(Arrays.toString(vendingMachine.getProducts()));
 
+        System.out.println();
+
         // print one product description
+        System.out.print("One existing product: ");
         System.out.println(vendingMachine.getDescription(0));
+        System.out.println();
+        try {
+            System.out.print("One none existing product: ");
+            vendingMachine.getDescription(3);
+        } catch(RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
 
         // add currency
         vendingMachine.addCurrency(Currency.FIVE);
@@ -32,30 +43,51 @@ public class App
         vendingMachine.addCurrency(Currency.TWO);
         vendingMachine.addCurrency(Currency.TWO);
 
+        System.out.println();
+
         // get balance
-        System.out.println(vendingMachine.getBalance());
+        System.out.println("Current balance: " + vendingMachine.getBalance());
+
+        System.out.println();
+
+        // request something not available
+        try {
+            System.out.println("Buy something not available: ");
+            Product requested = vendingMachine.request(3);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
 
         // request something too expensive
         try {
+            System.out.println("Buy something too expensive: ");
             Product requested = vendingMachine.request(1);
-            System.out.println("You brought: " + requested.getProductName());
         } catch (RuntimeException e) {
-            System.out.println("Too expensive!");
+            System.out.println(e.getMessage());
         }
+
+        System.out.println();
 
         // request something NOT too expensive
         try {
+            System.out.println("Buy something NOT too expensive: ");
             Product requested = vendingMachine.request(2);
             System.out.println("You brought: " + requested.getProductName());
         } catch (RuntimeException e) {
-            System.out.println("Too expensive!");
+            System.out.println(e.getMessage());
         }
+
+        System.out.println();
 
         // end session
         int change = vendingMachine.endSession();
-        System.out.println("change: " + change);
+        System.out.print("your change: " + change);
+
+        System.out.println();
 
         // get balance
-        System.out.println(vendingMachine.getBalance());
+        System.out.println("Current balance: " + vendingMachine.getBalance());
     }
 }
