@@ -41,15 +41,13 @@ public class VendingMachineImpl implements VendingMachine {
             depositPool -= (int) Math.ceil(foundProduct.getPrice());
             // remove the product from products
             Product[] newProducts = Arrays.copyOf(products, products.length - 1);
-            // if found at the end, just reassign borrowed to the new array
-            if (foundPos == products.length - 1) {
-                products = newProducts;
-            } else {
+            // if not found at the end of the array
+            if (foundPos != products.length - 1) {
                 // remove found product by merging with offset
                 System.arraycopy(products, foundPos + 1, newProducts, foundPos, products.length - foundPos);
                 // reassign products
-                products = newProducts;
             }
+            products = newProducts;
             // return the product
             return foundProduct;
         } else {
