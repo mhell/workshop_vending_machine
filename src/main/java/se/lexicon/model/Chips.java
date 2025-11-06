@@ -1,7 +1,5 @@
 package se.lexicon.model;
 
-//TODO: use
-
 public class Chips implements Product {
     private final int id;
     private double price;
