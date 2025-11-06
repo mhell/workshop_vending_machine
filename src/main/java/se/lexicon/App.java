@@ -51,11 +51,9 @@ public class App
             System.out.println("Too expensive!");
         }
 
-        // get balance
-        System.out.println(vendingMachine.getBalance());
-
         // end session
-        vendingMachine.endSession();
+        int change = vendingMachine.endSession();
+        System.out.println("change: " + change);
 
         // get balance
         System.out.println(vendingMachine.getBalance());
