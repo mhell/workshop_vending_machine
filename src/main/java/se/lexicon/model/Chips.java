@@ -24,7 +24,7 @@ public class Chips implements Product {
 
     @Override
     public String use() {
-        return "Chips is eaten.";
+        return getProductName() + " is eaten.";
     }
 
     @Override
