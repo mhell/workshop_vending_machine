@@ -1,5 +1,7 @@
 package se.lexicon.model;
 
+import java.util.Arrays;
+
 public class VendingMachineImpl implements VendingMachine {
     private Product[] products;
     private int depositPool;
@@ -21,40 +23,41 @@ public class VendingMachineImpl implements VendingMachine {
     @Override
     public Product request(int id) {
         // check if product exists
-        int indexFoundAt = -1;
+        int foundPos = -1;
         for (Product product : products) {
             if (product.getId() == id) {
-                indexFoundAt = id;
+                foundPos = id;
                 break;
             }
         }
-        // if not found
-        if (indexFoundAt == -1) throw new RuntimeException("Product was not found");
+        // if product was not found
+        if(foundPos == -1) {
+            throw new RuntimeException("Product was not found");
+        } else {
+            // get the product
+            Product foundProduct = products[foundPos];
 
-        // if found...
-        // get the product
-        Product foundProduct = products[indexFoundAt];
+            // check balance
+            if (getBalance() > foundProduct.getPrice()) {
+                // remove price from balance
+                depositPool -= (int) Math.ceil(foundProduct.getPrice());
 
-        // check balance
-        if (getBalance() > foundProduct.getPrice()) {
-            // remove price from balance
-            depositPool -= (int) Math.ceil(foundProduct.getPrice());
-
-            // remove the product from products
-            Product[] newProducts = new Product[products.length - 1];
-            for (int i = 0, j = 0; i < products.length; i++) {
-                if (products[i] != foundProduct) {
-                    newProducts[j] = products[i];
-                    j++;
+                // remove the product from products
+                Product[] newProducts = Arrays.copyOf(products, products.length - 1);
+                // if found at the end, just reassign borrowed to the new array
+                if (foundPos == products.length - 1) {
+                    products = newProducts;
+                } else {
+                    // remove found product by merging with offset
+                    System.arraycopy(products, foundPos + 1, newProducts, foundPos, products.length - foundPos);
+                    // reassign borrowed®
+                    products = newProducts;
                 }
+                // return the product
+                return foundProduct;
+            } else {
+                throw new RuntimeException("Insufficient balance");
             }
-            products = newProducts;
-
-            // return the product
-            return foundProduct;
-        }
-        else {
-            throw new RuntimeException("Insufficient balance");
         }
     }
 
