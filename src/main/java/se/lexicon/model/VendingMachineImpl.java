@@ -20,7 +20,7 @@ public class VendingMachineImpl implements VendingMachine {
 
     @Override
     public int getBalance() {
-        return 0; //TODO
+        return depositPool;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class VendingMachineImpl implements VendingMachine {
             }
         }
         // if not found
-        if (indexFoundAt == -1) throw new RuntimeException("That product was not found");
+        if (indexFoundAt == -1) throw new RuntimeException("Product was not found");
 
         // if found
         // get the product
@@ -43,7 +43,7 @@ public class VendingMachineImpl implements VendingMachine {
         // check balance
         if (getBalance() > foundProduct.getPrice()) {
             // remove price from balance
-            depositPool = -(int) Math.ceil(foundProduct.getPrice());
+            depositPool -= (int) Math.ceil(foundProduct.getPrice());
 
             // remove the product from array
             Product[] newProducts = new Product[products.length - 1];
@@ -64,12 +64,30 @@ public class VendingMachineImpl implements VendingMachine {
     }
 
     @Override
+    public int endSession() {
+        int temp = depositPool;
+        depositPool = 0;
+        return temp;
+    }
+
+    @Override
     public String getDescription(int id) {
-        return "";
+        // find product with id in products
+        for (Product product : products) {
+            if (product.getId() == id)
+                // return found product
+                return product.examine();
+        }
+        // product was not found
+        throw new RuntimeException("Product was not found");
     }
 
     @Override
     public String[] getProducts() {
-        return new String[0];
+        String[] descriptions = new String[products.length];
+        for (int i = 0; i < products.length; i++) {
+            descriptions[i] = products[i].examine();
+        }
+        return descriptions;
     }
 }
