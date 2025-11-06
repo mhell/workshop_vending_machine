@@ -11,4 +11,8 @@ public interface Product {
     void setProductName(String productName);
     double getPrice();
     void setPrice(double price);
+
+    static int nextId() {
+        return SEQUENCER.getAndIncrement();
+    }
 }

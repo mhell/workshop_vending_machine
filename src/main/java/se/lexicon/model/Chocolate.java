@@ -8,7 +8,7 @@ public class Chocolate implements Product {
     private String productName;
 
     public Chocolate(double price, String productName) {
-        this.id = Product.SEQUENCER.getAndIncrement();
+        this.id = Product.nextId();
         this.price = price;
         this.productName = productName;
     }
