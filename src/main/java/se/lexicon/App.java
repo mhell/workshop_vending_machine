@@ -19,6 +19,8 @@ public class App
 
         VendingMachineImpl vendingMachine = new VendingMachineImpl(products);
 
+        Product requested = null;
+
         // print all products
         System.out.println("All products:");
         System.out.println(Arrays.toString(vendingMachine.getProducts()));
@@ -53,7 +55,7 @@ public class App
         // request something not available
         try {
             System.out.println("Buy something not available: ");
-            vendingMachine.request(3);
+            requested = vendingMachine.request(3);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +65,7 @@ public class App
         // request something too expensive
         try {
             System.out.println("Buy something too expensive: ");
-            vendingMachine.request(1);
+            requested = vendingMachine.request(1);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -73,7 +75,7 @@ public class App
         // request something NOT too expensive
         try {
             System.out.println("Buy something NOT too expensive: ");
-            Product requested = vendingMachine.request(2);
+            requested = vendingMachine.request(2);
             System.out.println("You brought: " + requested.examine());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -89,5 +91,13 @@ public class App
 
         // get balance
         System.out.println("Current balance: " + vendingMachine.getBalance());
+
+        System.out.println();
+
+        // use the product
+        System.out.print("Use product: ");
+        if (requested != null) {
+            System.out.println(requested.use());
+        }
     }
 }
