@@ -36,12 +36,10 @@ public class VendingMachineImpl implements VendingMachine {
         } else {
             // get the product
             Product foundProduct = products[foundPos];
-
             // check balance
             if (getBalance() > foundProduct.getPrice()) {
                 // remove price from balance
                 depositPool -= (int) Math.ceil(foundProduct.getPrice());
-
                 // remove the product from products
                 Product[] newProducts = Arrays.copyOf(products, products.length - 1);
                 // if found at the end, just reassign borrowed to the new array
@@ -50,7 +48,7 @@ public class VendingMachineImpl implements VendingMachine {
                 } else {
                     // remove found product by merging with offset
                     System.arraycopy(products, foundPos + 1, newProducts, foundPos, products.length - foundPos);
-                    // reassign borrowed®
+                    // reassign products
                     products = newProducts;
                 }
                 // return the product
