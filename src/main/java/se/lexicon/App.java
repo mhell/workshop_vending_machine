@@ -74,7 +74,7 @@ public class App
         try {
             System.out.println("Buy something NOT too expensive: ");
             Product requested = vendingMachine.request(2);
-            System.out.println("You brought: " + requested.getProductName());
+            System.out.println("You brought: " + requested.examine());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -83,7 +83,7 @@ public class App
 
         // end session
         int change = vendingMachine.endSession();
-        System.out.print("your change: " + change);
+        System.out.print("Your change: " + change);
 
         System.out.println();
 
