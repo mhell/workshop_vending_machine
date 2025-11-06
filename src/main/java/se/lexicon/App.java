@@ -22,7 +22,7 @@ public class App
         Product requested = null;
 
         // print all products
-        System.out.println("All products:");
+        System.out.print("All products: ");
         System.out.println(Arrays.toString(vendingMachine.getProducts()));
 
         System.out.println();
