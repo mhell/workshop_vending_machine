@@ -24,7 +24,7 @@ public class Soda implements Product {
 
     @Override
     public String use() {
-        return "Chips is used.";
+        return "Soda is drunk.";
     }
 
     @Override
