@@ -53,7 +53,7 @@ public class App
         // request something not available
         try {
             System.out.println("Buy something not available: ");
-            Product requested = vendingMachine.request(3);
+            vendingMachine.request(3);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +63,7 @@ public class App
         // request something too expensive
         try {
             System.out.println("Buy something too expensive: ");
-            Product requested = vendingMachine.request(1);
+            vendingMachine.request(1);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
