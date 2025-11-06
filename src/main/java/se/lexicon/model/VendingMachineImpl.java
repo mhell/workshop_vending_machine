@@ -1,10 +1,5 @@
 package se.lexicon.model;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Comparator;
-
 public class VendingMachineImpl implements VendingMachine {
     private Product[] products;
     private int depositPool;
