@@ -48,32 +48,32 @@ Options:
 
 ## ⚙️ Step 4: Implement Methods
 
-### ➕ Add Currency
+### ➕ Add Currency ok
 
 - Adds money to the deposit pool
 - Only accepts values:  
   `1, 2, 5, 10, 20, 50, 100, 200, 500, 1000`
 
-### 📥 Request
+### 📥 Request ok
 
 - Buy the requested product
 - Only proceeds if enough money is available in the deposit pool
 
-### 💰 End Session
+### 💰 End Session ok
 
 - Returns the deposit pool as change
 - Resets the pool to 0
 
-### 📝 Get Description
+### 📝 Get Description ok
 
 - Returns a string with the selected product’s description
 
-### 💵 Get Balance
+### 💵 Get Balance ok
 
 - Returns the current amount in the deposit pool
 - Does **not** reset it
 
-### 📋 Get Products
+### 📋 Get Products ok
 
 - Returns a `String[]`
 - Each string contains a product’s:
