@@ -16,9 +16,9 @@ public class Chocolate implements Product {
     @Override
     public String examine() {
         return "Chocolate{" +
-                "id=" + id +
-                ", price=" + price +
-                ", productName='" + productName + '\'' +
+                "id=" + getId() +
+                ", price=" + getPrice() +
+                ", productName='" + getProductName() + '\'' +
                 '}';
     }
 

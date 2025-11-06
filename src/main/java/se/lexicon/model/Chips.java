@@ -9,16 +9,16 @@ public class Chips implements Product {
 
     public Chips(double price, String productName) {
         this.id = Product.nextId();
-        this.price = price;
-        this.productName = productName;
+        setPrice(price);
+        setProductName(productName);
     }
 
     @Override
     public String examine() {
         return "Chips{" +
-                "id=" + id +
-                ", price=" + price +
-                ", productName='" + productName + '\'' +
+                "id=" + getId() +
+                ", price=" + getPrice() +
+                ", productName='" + getProductName() + '\'' +
                 '}';
     }
 
