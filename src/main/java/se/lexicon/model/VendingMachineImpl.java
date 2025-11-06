@@ -31,7 +31,7 @@ public class VendingMachineImpl implements VendingMachine {
         // if not found
         if (indexFoundAt == -1) throw new RuntimeException("Product was not found");
 
-        // if found
+        // if found...
         // get the product
         Product foundProduct = products[indexFoundAt];
 
@@ -40,7 +40,7 @@ public class VendingMachineImpl implements VendingMachine {
             // remove price from balance
             depositPool -= (int) Math.ceil(foundProduct.getPrice());
 
-            // remove the product from array
+            // remove the product from products
             Product[] newProducts = new Product[products.length - 1];
             for (int i = 0, j = 0; i < products.length; i++) {
                 if (products[i] != foundProduct) {
