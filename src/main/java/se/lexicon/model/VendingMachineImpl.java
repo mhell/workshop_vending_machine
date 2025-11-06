@@ -37,7 +37,7 @@ public class VendingMachineImpl implements VendingMachine {
         Product foundProduct = products[foundPos];
         // check balance
         if (getBalance() > foundProduct.getPrice()) {
-            // remove price from balance
+            // remove price from depositPool
             depositPool -= (int) Math.ceil(foundProduct.getPrice());
             // remove the product from products
             Product[] newProducts = Arrays.copyOf(products, products.length - 1);
